@@ -5,6 +5,8 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 
 const Header = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
   const [navbar, setNavbar] = useState(false)
   const [cat,setCat]=useState([])
  
@@ -14,7 +16,7 @@ useEffect(()=>{
 
 const fetchcat=async()=>{
   try {
-    const newss=await axios.get('http://localhost:4000/user/categories'); 
+    const newss=await API.get('/user/categories'); 
    setCat(newss.data)
     console.log(newss,'new')
   } catch (error) {

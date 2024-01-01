@@ -10,6 +10,8 @@ import Pagination from "../../../admin/pagination/Pagination"
 import { Link } from "react-router-dom"
 
 const Tpost = () => {
+    // const API= axios.create({baseURL:"http://localhost:4000"})
+    const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
   const [news,setNews]=useState([])
   const [currentPage,setCurrentPage]=useState(1)
   const [newsPerPage,setNewsPage]=useState(2)
@@ -23,7 +25,7 @@ useEffect(()=>{
 
 const fetchNews=async()=>{
   try {
-    const newss=await axios.get('http://localhost:4000/user/news'); 
+    const newss=await API.get('/user/news'); 
   
    
     setNews(newss.data)

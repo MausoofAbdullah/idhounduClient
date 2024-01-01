@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const AddCategory = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
     const [category, setCategory] = useState('');
 
     const handleAddCategory = async (e) => {
@@ -11,7 +13,7 @@ const AddCategory = () => {
       console.log(category, 'category');
       
       // Assuming you have an endpoint for adding categories (adjust the URL accordingly)
-      const response = await axios.post('http://localhost:4000/user/categories',  {category });
+      const response = await API.post('/user/categories',  {category });
       
     
   

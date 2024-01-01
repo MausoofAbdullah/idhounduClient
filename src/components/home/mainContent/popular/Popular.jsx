@@ -16,6 +16,8 @@ import Pagination from "../../../admin/pagination/Pagination"
 import { Link } from "react-router-dom"
 
 const Popular = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
   const [currentPage,setCurrentPage]=useState(1)
   const [news,setNews]=useState([])
   const [newsPerPage,setNewsPage]=useState(2)
@@ -57,7 +59,7 @@ console.log(serverPublic,"whatisi ")
 
   const fetchNews=async()=>{
     try {
-      const newss=await axios.get('http://localhost:4000/user/news'); 
+      const newss=await API.get('/user/news'); 
     
      
       setNews(newss.data)
@@ -77,7 +79,7 @@ console.log(serverPublic,"whatisi ")
   };
   const getShareableLink = (id) => {
     // Replace this with your logic to generate the shareable link
-    return `http://localhost:3000/user/detailnews/${id}`;
+    return `https://idhoundu-client.vercel.app/user/detailnews/${id}`;
   };
 
   // Function to handle sharing on different platforms

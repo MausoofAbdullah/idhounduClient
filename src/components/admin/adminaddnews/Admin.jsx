@@ -4,6 +4,8 @@ import "./Admin.css"
 import { Link } from 'react-router-dom';
 
 const Admin = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
 
     const [data, setData] = useState({
         title: "",
@@ -31,7 +33,7 @@ const Admin = () => {
         try {
             console.log("be")
             
-            const response = await axios.get('http://localhost:4000/user/categories');  // Adjust the URL accordingly
+            const response = await API.get('/user/categories');  // Adjust the URL accordingly
             console.log(response,'get')
             setCategories(response.data);
           } catch (error) {
@@ -68,7 +70,7 @@ const Admin = () => {
         for (let i = 0; i < data.images.length; i++) {
           formData.append('images', data.images[i]);
         }
-        const response= await axios.post("http://localhost:4000/user", formData,{
+        const response= await API.post("/user", formData,{
 
           headers:{
             'Content-Type': 'multipart/form-data',

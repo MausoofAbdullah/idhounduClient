@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Auth = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
   const [formData, setFormData] = useState({
     username: '',
     firstname: '',
@@ -18,7 +20,7 @@ const Auth = () => {
 
     try {
       // Make an API request to your backend for user registration
-      const response = await axios.post('http://localhost:4000/user/register', formData);
+      const response = await API.post('/user/register', formData);
       console.log(response.data); // You might want to redirect or show a success message
     } catch (error) {
       console.error('Signup failed:', error.response.data.message);

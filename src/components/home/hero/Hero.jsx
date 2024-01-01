@@ -32,6 +32,8 @@ import axios from "axios"
 
 
 const Hero = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
   const [items, setIems] = useState(hero)
   const [news, setNews] = useState(hero)
   
@@ -43,7 +45,7 @@ const Hero = () => {
 
   const fetchNews=async()=>{
     try {
-      const newss=await axios.get('http://localhost:4000/user/article'); 
+      const newss=await API.get('user/article'); 
     
      
       setNews(newss.data)

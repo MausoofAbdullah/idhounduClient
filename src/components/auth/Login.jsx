@@ -3,6 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+
+  
+    
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -18,7 +23,7 @@ const Login = () => {
 
     try {
       // Make an API request to your backend for user login
-      const response = await axios.post('http://localhost:4000/user/login', formData);
+      const response = await API.post('/user/login', formData);
     //   console.log(response.data,"token"); // You might want to redirect or manage user authentication state
       localStorage.setItem('token', response.data.token);
       navigate('/admin')

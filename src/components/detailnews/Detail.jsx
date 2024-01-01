@@ -5,6 +5,8 @@ import "./Detail.css"
 import { useParams } from 'react-router-dom'
 
 const Detail = () => {
+  // const API= axios.create({baseURL:"http://localhost:4000"})
+  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
     const [news,setNews]=useState([])
     const [item,setItem]=useState([])
     const { id } = useParams()
@@ -15,7 +17,7 @@ const Detail = () => {
     
       const fetchNews=async()=>{
         try {
-          const newss=await axios.get(`http://localhost:4000/user/detailnews/${id}`); 
+          const newss=await API.get(`/detailnews/${id}`); 
         //   const item = newss.find((items) => items.id === parseInt(id))
         //  setItem(item)
         console.log(newss,'newss')
@@ -26,7 +28,7 @@ const Detail = () => {
     }
     const getShareableLink = (id) => {
         // Replace this with your logic to generate the shareable link
-        return `http://localhost:3000/user/detailnews/${id}`;
+        return `https://idhoundu-client.vercel.app/user/detailnews/${id}`;
       };
     
       // Function to handle sharing on different platforms

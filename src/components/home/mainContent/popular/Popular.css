@@ -1,0 +1,81 @@
+.popular .box {
+    background-color: #fff;
+    display: flex;
+    /* #18  copy*/
+    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;*/
+    position: relative;
+    margin: 15px 15px 15px 0;
+    /*box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;*/
+  }
+  .popular .images {
+    position: relative;
+    height: 150px;
+  }
+  .popular img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .popular .text h1 {
+    padding: 20px 0 0 20px;
+    margin: 0;
+  }
+  .popular .date {
+    margin-top: 15px;
+    padding: 0 0 0 20px;
+  }
+  
+  .popular .comment {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px 0 0 20px;
+    margin-top: 5px;
+  }
+  .latest{
+    border: solid 1px red;
+    width: 100%;
+    height: 100px;
+  }
+  .news-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .news-content {
+    margin-top: 20px;
+  }
+  
+  p {
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .news_image {
+    width: 10%; 
+    height: 100px; 
+    object-fit: cover; 
+    margin-top: 20px;
+}
+  
+  h2 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .news-date {
+    margin-top: 20px;
+    color: #888;
+  }
+
+  
+  /* Add additional styles as needed */
+  

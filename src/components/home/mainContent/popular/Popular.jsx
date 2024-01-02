@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet";
 import "./Popular.css"
 import axios from "axios"
 import { format } from "timeago.js"
@@ -99,10 +100,18 @@ console.log(serverPublic,"whatisi ")
 
   return (
     <>
+     
       <section className='popular'>
       <div>
       {currentNews.map((article) => (
         <div className="news-article" key={article._id}>
+          <Helmet>
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={truncateText(article.body,maxChars)} />
+        <meta property="og:image" content={serverPublic+article.images[0]} />
+        {/* <meta property="og:url" content={shareableLink} /> */}
+        <meta property="og:site_name" content="idondu news" />
+      </Helmet>
           <Link to={`/detailnews/${article._id}`}>
           <h1>{article.title}</h1>
           <div className="news-content">

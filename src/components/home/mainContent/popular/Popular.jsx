@@ -80,7 +80,7 @@ console.log(serverPublic,"whatisi ")
   };
   const getShareableLink = (id) => {
     // Replace this with your logic to generate the shareable link
-    return `${process.env.REACT_APP_BASE_URL}/user/detailnews/${id}`;
+    return `${process.env.REACT_APP_BASE_URL}/detailnews/${id}`;
   };
 
   // Function to handle sharing on different platforms

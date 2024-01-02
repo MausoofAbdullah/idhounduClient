@@ -31,13 +31,7 @@ const App = () => {
   },[])
   return (
     <>
-<Helmet>
-        {/* Global meta tags */}
-        <meta property="og:title" content="Default Title" />
-        <meta property="og:description" content="Default Description" />
-        <meta property="og:image" content="Default Image URL" />
-        {/* ... other global meta tags ... */}
-      </Helmet>
+
     
        <BrowserRouter>
       <Routes>

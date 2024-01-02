@@ -17,6 +17,7 @@ import Newsdetail from "./components/detailnews/detailbody/Newsdetail";
 import Addarticle from "./components/admin/addarticles/Addarticle";
 import Auth from "./components/auth/Auth";
 import Login from "./components/auth/Login";
+import { Helmet } from "react-helmet";
 
 
 const App = () => {
@@ -30,7 +31,13 @@ const App = () => {
   },[])
   return (
     <>
-
+<Helmet>
+        {/* Global meta tags */}
+        <meta property="og:title" content="Default Title" />
+        <meta property="og:description" content="Default Description" />
+        <meta property="og:image" content="Default Image URL" />
+        {/* ... other global meta tags ... */}
+      </Helmet>
     
        <BrowserRouter>
       <Routes>

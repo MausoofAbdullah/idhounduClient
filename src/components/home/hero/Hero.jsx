@@ -32,8 +32,8 @@ import axios from "axios"
 
 
 const Hero = () => {
-  // const API= axios.create({baseURL:"http://localhost:4000"})
-  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+  const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
+
   const [items, setIems] = useState(hero)
   const [news, setNews] = useState(hero)
   

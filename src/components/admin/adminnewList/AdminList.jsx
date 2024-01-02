@@ -3,8 +3,11 @@ import axios from 'axios'
 import "./AdminList.css"
 import Pagination from '../pagination/Pagination'
 const AdminList = () => {
-  // const API= axios.create({baseURL:"http://localhost:4000"})
-  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+  const API= axios.create({
+    baseURL:process.env.REACT_APP_API_CALL
+  })
+
+
 
  const [news,setNews]=useState([])
  const [currentPage,setCurrentPage]=useState(1)

@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  // const API= axios.create({baseURL:"http://localhost:4000"})
-  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+  const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
+
 
   
     

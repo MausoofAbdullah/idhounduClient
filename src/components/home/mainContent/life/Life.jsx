@@ -9,8 +9,8 @@ import "../Ppost/ppost.css"
 import { Link } from "react-router-dom"
 //copy ppost code
 const Life = () => {
-  // const API= axios.create({baseURL:"http://localhost:4000"})
-  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+  const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
+
   const [news,setNews]=useState([])
 
   useEffect(()=>{

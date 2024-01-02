@@ -10,8 +10,8 @@ import Pagination from "../../../admin/pagination/Pagination"
 import { Link } from "react-router-dom"
 
 const Tpost = () => {
-    // const API= axios.create({baseURL:"http://localhost:4000"})
-    const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+  const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
+
   const [news,setNews]=useState([])
   const [currentPage,setCurrentPage]=useState(1)
   const [newsPerPage,setNewsPage]=useState(2)

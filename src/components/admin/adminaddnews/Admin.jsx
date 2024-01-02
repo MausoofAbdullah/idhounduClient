@@ -4,8 +4,8 @@ import "./Admin.css"
 import { Link } from 'react-router-dom';
 
 const Admin = () => {
-  // const API= axios.create({baseURL:"http://localhost:4000"})
-  const API= axios.create({baseURL:"https://idondusuddi.onrender.com"})
+
+  const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
 
     const [data, setData] = useState({
         title: "",

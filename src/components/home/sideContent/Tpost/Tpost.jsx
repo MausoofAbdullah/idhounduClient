@@ -33,6 +33,10 @@ const fetchNews=async()=>{
     
   }
  }
+ const handleItemClick = () => {
+  // Scroll to the top of the page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
  const maxChars = 150;
  // Function to truncate the text
@@ -55,7 +59,7 @@ const fetchNews=async()=>{
         <Heading title='Recent News' />
         {currentNews.map((val) => {
           return (
-      <Link to={`/detailnews/${val._id}`}>
+      <Link to={`/detailnews/${val._id}`} onClick={handleItemClick} >
 
             <div className='box flexSB'>
               <div className='img'>

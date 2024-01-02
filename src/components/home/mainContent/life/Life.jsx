@@ -27,6 +27,10 @@ const Life = () => {
       
     }
    }
+   const handleItemClick = () => {
+    // Scroll to the top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
 const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v1703658754/"
 
@@ -56,7 +60,7 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
             {news.map((val) => {
               return (
                 <div className='items'>
-      <Link to={`/detailnews/${val._id}`}>
+      <Link to={`/detailnews/${val._id}`} onClick={handleItemClick}>
 
                   <div className='box shadow'>
                     <div className='images'>

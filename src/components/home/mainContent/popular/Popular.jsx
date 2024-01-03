@@ -99,7 +99,8 @@ console.log(serverPublic,"whatisi ")
   };
 
   const handleLinkClick = async(articleId) => {
-    const response = await API.get(`/user/news/${articleId}`);
+    const response = await API.get(`/user/detailnews/${articleId}`);
+    
     setArticle(response.data);
     console.log(`Link clicked for article with ID: ${articleId}`);
     document.title = article.title;
@@ -161,10 +162,13 @@ console.log(serverPublic,"whatisi ")
         <i class="fa-solid fa-share-from-square" style={{fontSize: '1.5em'}}></i><span>Share</span>
 
 
-        <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(article._id)} ></i><span className="wname">whatsapp</span>
-        <i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>{
-          shareOnFacebook(article._id)
+        <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>{
+          shareOnWhatsapp(article._id)
           handleLinkClick(article._id)
+          }} ></i><span className="wname">whatsapp</span>
+        <i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>{
+          
+          shareOnFacebook(article._id)
         }}></i><span>Facebook</span>
         
         </div>

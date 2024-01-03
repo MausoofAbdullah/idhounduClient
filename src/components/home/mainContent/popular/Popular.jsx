@@ -23,6 +23,7 @@ console.log(process.env.REACT_APP_API_CALL,"reapi call")
   const [currentPage,setCurrentPage]=useState(1)
   const [news,setNews]=useState([])
   const [newsPerPage,setNewsPage]=useState(2)
+  const [article, setArticle] = useState(null);
 
 const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v1703658754/"
 console.log(serverPublic,"whatisi ")
@@ -97,6 +98,30 @@ console.log(serverPublic,"whatisi ")
     window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
   };
 
+  const handleLinkClick = async(articleId) => {
+    const response = await API.get(`/user/news/${articleId}`);
+    setArticle(response.data);
+    console.log(`Link clicked for article with ID: ${articleId}`);
+    document.title = article.title;
+
+    const metaTags = document.querySelectorAll('meta[property^="og:"]');
+    metaTags.forEach(tag => {
+      const property = tag.getAttribute('property');
+      switch (property) {
+        case 'og:title':
+          tag.setAttribute('content', article.title);
+          break;
+        case 'og:description':
+          tag.setAttribute('content', truncateText(article.body, maxChars));
+          break;
+        case 'og:image':
+          tag.setAttribute('content', serverPublic + article.images[0]);
+          break;
+        default:
+          break;
+      }
+    });
+  };
 
   return (
     <>
@@ -112,7 +137,7 @@ console.log(serverPublic,"whatisi ")
         {/* <meta property="og:url" content={shareableLink} /> */}
         <meta property="og:site_name" content="idondu news" />
       </Helmet>
-          <Link to={`/detailnews/${article._id}`}>
+          <Link to={`/detailnews/${article._id}`}  >
           <h1>{article.title}</h1>
           <div className="news-content">
             <p>{truncateText(article.body,maxChars)}</p>
@@ -137,7 +162,10 @@ console.log(serverPublic,"whatisi ")
 
 
         <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(article._id)} ></i><span className="wname">whatsapp</span>
-        <i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnFacebook(article._id)}></i><span>Facebook</span>
+        <i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>{
+          shareOnFacebook(article._id)
+          handleLinkClick(article._id)
+        }}></i><span>Facebook</span>
         
         </div>
         

@@ -92,17 +92,18 @@ console.log(serverPublic,"whatisi ")
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareLink)}`, '_blank');
   };
 
-  const shareOnWhatsapp = (id) => {
-    const shareLink = getShareableLink(id);
-    // Implement logic to open WhatsApp share dialog with shareLink
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
-  };
+  // const shareOnWhatsapp = (id) => {
+  //   const shareLink = getShareableLink(id);
+  //   // Implement logic to open WhatsApp share dialog with shareLink
+  //   window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
+  // };
 
   const handleLinkClick = async(articleId) => {
     const response = await API.get(`/user/detailnews/${articleId}`);
     
     setArticle(response.data);
     console.log(`Link clicked for article with ID: ${articleId}`);
+    console.log(article,"article")
     document.title = article.title;
 
     const metaTags = document.querySelectorAll('meta[property^="og:"]');
@@ -122,6 +123,10 @@ console.log(serverPublic,"whatisi ")
           break;
       }
     });
+
+    const shareLink = getShareableLink(articleId);
+    // Implement logic to open WhatsApp share dialog with shareLink
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
   };
 
   return (
@@ -163,7 +168,7 @@ console.log(serverPublic,"whatisi ")
 
 
         <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>{
-          shareOnWhatsapp(article._id)
+          // shareOnWhatsapp(article._id)
           handleLinkClick(article._id)
           }} ></i><span className="wname">whatsapp</span>
         <i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>{

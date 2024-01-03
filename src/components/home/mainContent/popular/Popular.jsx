@@ -124,9 +124,12 @@ console.log(serverPublic,"whatisi ")
       }
     });
 
-    const shareLink = getShareableLink(articleId);
-    // Implement logic to open WhatsApp share dialog with shareLink
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
+    // Delay before opening the share link
+    setTimeout(() => {
+      const shareLink = getShareableLink(articleId);
+      // Implement logic to open WhatsApp share dialog with shareLink
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
+    }, 3000);
   };
 
   return (

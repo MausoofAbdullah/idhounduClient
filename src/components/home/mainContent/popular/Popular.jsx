@@ -99,37 +99,11 @@ console.log(serverPublic,"whatisi ")
   // };
 
   const handleLinkClick = async(articleId) => {
-    const response = await API.get(`/user/detailnews/${articleId}`);
-    
-    setArticle(response.data);
-    console.log(`Link clicked for article with ID: ${articleId}`);
-    console.log(article,"article")
-    document.title = article.title;
+  
 
-    const metaTags = document.querySelectorAll('meta[property^="og:"]');
-    metaTags.forEach(tag => {
-      const property = tag.getAttribute('property');
-      switch (property) {
-        case 'og:title':
-          tag.setAttribute('content', article.title);
-          break;
-        case 'og:description':
-          tag.setAttribute('content', truncateText(article.body, maxChars));
-          break;
-        case 'og:image':
-          tag.setAttribute('content', serverPublic + article.images[0]);
-          break;
-        default:
-          break;
-      }
-    });
-
-    // Delay before opening the share link
-    setTimeout(() => {
-      const shareLink = getShareableLink(articleId);
-      // Implement logic to open WhatsApp share dialog with shareLink
-      window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
-    }, 3000);
+    const shareLink = getShareableLink(articleId);
+    // Implement logic to open WhatsApp share dialog with shareLink
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
   };
 
   return (
@@ -139,13 +113,9 @@ console.log(serverPublic,"whatisi ")
       <div>
       {currentNews.map((article) => (
         <div className="news-article" key={article._id}>
-          <Helmet>
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={truncateText(article.body,maxChars)} />
-        <meta property="og:image" content={serverPublic+article.images[0]} />
-        {/* <meta property="og:url" content={shareableLink} /> */}
-        <meta property="og:site_name" content="idondu news" />
-      </Helmet>
+      {document.head.querySelector('meta[property="og:title"]').setAttribute('content', article.title)}
+              {document.head.querySelector('meta[property="og:description"]').setAttribute('content', article.body.slice(0,150))}
+              {document.head.querySelector('meta[property="og:image"]').setAttribute('content', serverPublic + article.images[0])}
           <Link to={`/detailnews/${article._id}`}  >
           <h1>{article.title}</h1>
           <div className="news-content">

@@ -6,14 +6,28 @@ import { useParams } from 'react-router-dom'
 
 const Detail = () => {
   const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
-
+  // useEffect(() => {
+  //     // Dynamically update meta tags on the client side
+  //     document.title = ogpTags.title;
+  //     document.querySelector('meta[property="og:title"]').content = ogpTags.title;
+  //     document.querySelector('meta[property="og:description"]').content = ogpTags.description;
+  //     document.querySelector('meta[property="og:image"]').content = ogpTags.image;
+  //     document.querySelector('meta[property="og:url"]').content = ogpTags.url;
+  //   }, [ogpTags]);
+    
+    const [ogpTags,setOgpTags]=useState([])
     const [news,setNews]=useState([])
     const [item,setItem]=useState([])
     const { id } = useParams()
     console.log(id,"e")
+   
 
     useEffect(()=>{
         fetchNews()
+      
+        document.title = ogpTags
+    
+        
        },[id])
     
       const fetchNews=async()=>{
@@ -22,7 +36,9 @@ const Detail = () => {
         //   const item = newss.find((items) => items.id === parseInt(id))
         //  setItem(item)
         console.log(newss,'newss')
-          setNews(newss.data)
+        setNews(newss.data.news)
+        // console.log(newss.data.ogpTags,'dgp')
+        setOgpTags(newss.data.ogpTags)
         } catch (error) {
             console.log(error,'err')
         }

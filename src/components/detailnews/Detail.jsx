@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 const Detail = () => {
   const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
 
+  const [latestNews, setLatestNews] = useState(null);
     
     const [ogpTags,setOgpTags]=useState([])
     const [news,setNews]=useState([])
@@ -16,34 +17,73 @@ const Detail = () => {
     const { id } = useParams()
     console.log(id,"e")
    
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const newss = await API.get(`/user/detailnews/${id}`);
+        setLatestNews(newss.data);
+      } catch (error) {
+        console.log(error, 'err');
+      }
+    };
 
-    useEffect(()=>{
+    fetchNews();
+  }, [id]);
+
+  useEffect(() => {
+    if (latestNews) {
+      setNews(latestNews);
+
+      document.head
+        .querySelector('meta[property="og:title"]')
+        .setAttribute('content', latestNews.title);
+
+      document.head
+        .querySelector('meta[property="og:description"]')
+        .setAttribute('content', latestNews.body?.slice(0, 150));
+
+      document.head
+        .querySelector('meta[property="og:image"]')
+        .setAttribute('content', serverPublic + latestNews.images?.[0]);
+    }
+  }, [latestNews]);
+
+    // useEffect(()=>{
       
-       fetchNews();
+    //    fetchNews();
+    //    if (news) {
+    //     document.head
+    //       .querySelector('meta[property="og:title"]')
+    //       .setAttribute('content', news.title);
+    
+    //     document.head
+    //       .querySelector('meta[property="og:description"]')
+    //       .setAttribute('content', news.body?.slice(0, 150));
+    
+    //     document.head
+    //       .querySelector('meta[property="og:image"]')
+    //       .setAttribute('content', serverPublic + news.images?.[0]);
+    //   }
      
       
 
         
-       },[id])
-    console.log(ogpTags,"outside")
-      const fetchNews=async()=>{
-        try {
-          const newss=await API.get(`/user/detailnews/${id}`); 
-        //   const item = newss.find((items) => items.id === parseInt(id))
-        //  setItem(item)
-        console.log(newss,'newss')
-        setNews(newss.data.news)
+    //    },[id])
+    // // console.log(ogpTags,"outside")
+    //   const fetchNews=async()=>{
+    //     try {
+    //       const newss=await API.get(`/user/detailnews/${id}`); 
+    //     //   const item = newss.find((items) => items.id === parseInt(id))
+    //     //  setItem(item)
+    //     console.log(newss,'newss')
+    //     setNews(newss.data)
         
-        {document.head.querySelector('meta[property="og:title"]').setAttribute('content', news?.title)}
-           {document.head.querySelector('meta[property="og:description"]').setAttribute('content', news?.body?.slice(0,150))}
-           {document.head.querySelector('meta[property="og:image"]').setAttribute('content', serverPublic + news?.images?.[0])} 
       
-        // console.log(newss.data.ogpTags,'dgp')
-        setOgpTags(newss.data.ogpTags)
-        } catch (error) {
-            console.log(error,'err')
-        }
-    }
+       
+    //     } catch (error) {
+    //         console.log(error,'err')
+    //     }
+    // }
     const getShareableLink = (id) => {
         // Replace this with your logic to generate the shareable link
         return `${process.env.REACT_APP_BASE_URL}/detailnews/${id}`;

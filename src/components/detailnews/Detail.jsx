@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react'
+
 import axios from "axios"
 import { format } from "timeago.js"
 import "./Detail.css"
 import { useParams } from 'react-router-dom'
 
+
 const Detail = () => {
   const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
-  // useEffect(() => {
-  //     // Dynamically update meta tags on the client side
-  //     document.title = ogpTags.title;
-  //     document.querySelector('meta[property="og:title"]').content = ogpTags.title;
-  //     document.querySelector('meta[property="og:description"]').content = ogpTags.description;
-  //     document.querySelector('meta[property="og:image"]').content = ogpTags.image;
-  //     document.querySelector('meta[property="og:url"]').content = ogpTags.url;
-  //   }, [ogpTags]);
+
     
     const [ogpTags,setOgpTags]=useState([])
     const [news,setNews]=useState([])
@@ -23,13 +18,14 @@ const Detail = () => {
    
 
     useEffect(()=>{
-        fetchNews()
       
-        document.title = ogpTags
-    
+       fetchNews();
+     
+      
+
         
        },[id])
-    
+    console.log(ogpTags,"outside")
       const fetchNews=async()=>{
         try {
           const newss=await API.get(`/user/detailnews/${id}`); 
@@ -37,6 +33,11 @@ const Detail = () => {
         //  setItem(item)
         console.log(newss,'newss')
         setNews(newss.data.news)
+        
+        {document.head.querySelector('meta[property="og:title"]').setAttribute('content', news?.title)}
+           {document.head.querySelector('meta[property="og:description"]').setAttribute('content', news?.body?.slice(0,150))}
+           {document.head.querySelector('meta[property="og:image"]').setAttribute('content', serverPublic + news?.images?.[0])} 
+      
         // console.log(newss.data.ogpTags,'dgp')
         setOgpTags(newss.data.ogpTags)
         } catch (error) {
@@ -67,6 +68,8 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
   return (
    <>
      <section className='popular'>
+   
+
       <div className='main'>
      
         <div className="news-article" key={news._id}>

@@ -110,12 +110,13 @@ console.log(serverPublic,"whatisi ")
     <>
      
       <section className='popular'>
+     
       <div>
       {currentNews.map((article) => (
         <div className="news-article" key={article._id}>
-      {document.head.querySelector('meta[property="og:title"]').setAttribute('content', article.title)}
+      {/* {document.head.querySelector('meta[property="og:title"]').setAttribute('content', article.title)}
               {document.head.querySelector('meta[property="og:description"]').setAttribute('content', article.body.slice(0,150))}
-              {document.head.querySelector('meta[property="og:image"]').setAttribute('content', serverPublic + article.images[0])}
+              {document.head.querySelector('meta[property="og:image"]').setAttribute('content', serverPublic + article.images[0])} */}
           <Link to={`/detailnews/${article._id}`}  >
           <h1>{article.title}</h1>
           <div className="news-content">

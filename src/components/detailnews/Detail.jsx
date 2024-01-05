@@ -146,7 +146,7 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
 <FacebookShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
   <FacebookIcon round ={true}/>
 </FacebookShareButton>
-<WhatsappShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
+<WhatsappShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`} title={news.title} imageUrl={serverPublic+news.images?.[0] }>
   <WhatsappIcon/>
 </WhatsappShareButton>
 

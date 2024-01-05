@@ -4,6 +4,16 @@ import axios from "axios"
 import { format } from "timeago.js"
 import "./Detail.css"
 import { useParams } from 'react-router-dom'
+import {
+    FacebookShareButton,
+  WhatsappShareButton,
+} from "react-share"
+import {
+ 
+  FacebookIcon,
+  
+  WhatsappIcon,
+} from "react-share";
 
 
 const Detail = () => {
@@ -18,35 +28,35 @@ const Detail = () => {
     console.log(id,"e")
    
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const newss = await API.get(`/user/detailnews/${id}`);
-        setLatestNews(newss.data);
-      } catch (error) {
-        console.log(error, 'err');
-      }
-    };
+    // const fetchNews = async () => {
+    //   try {
+    //     const newss = await API.get(`/user/detailnews/${id}`);
+    //     setLatestNews(newss.data);
+    //   } catch (error) {
+    //     console.log(error, 'err');
+    //   }
+    // };
 
     fetchNews();
   }, [id]);
 
-  useEffect(() => {
-    if (latestNews) {
-      setNews(latestNews);
+  // useEffect(() => {
+  //   if (latestNews) {
+  //     setNews(latestNews);
 
-      document.head
-        .querySelector('meta[property="og:title"]')
-        .setAttribute('content', latestNews.title);
+  //     document.head
+  //       .querySelector('meta[property="og:title"]')
+  //       .setAttribute('content', latestNews.title);
 
-      document.head
-        .querySelector('meta[property="og:description"]')
-        .setAttribute('content', latestNews.body?.slice(0, 150));
+  //     document.head
+  //       .querySelector('meta[property="og:description"]')
+  //       .setAttribute('content', latestNews.body?.slice(0, 150));
 
-      document.head
-        .querySelector('meta[property="og:image"]')
-        .setAttribute('content', serverPublic + latestNews.images?.[0]);
-    }
-  }, [latestNews]);
+  //     document.head
+  //       .querySelector('meta[property="og:image"]')
+  //       .setAttribute('content', serverPublic + latestNews.images?.[0]);
+  //   }
+  // }, [latestNews]);
 
     // useEffect(()=>{
       
@@ -70,20 +80,20 @@ const Detail = () => {
         
     //    },[id])
     // // console.log(ogpTags,"outside")
-    //   const fetchNews=async()=>{
-    //     try {
-    //       const newss=await API.get(`/user/detailnews/${id}`); 
-    //     //   const item = newss.find((items) => items.id === parseInt(id))
-    //     //  setItem(item)
-    //     console.log(newss,'newss')
-    //     setNews(newss.data)
+      const fetchNews=async()=>{
+        try {
+          const newss=await API.get(`/user/detailnews/${id}`); 
+        //   const item = newss.find((items) => items.id === parseInt(id))
+        //  setItem(item)
+        console.log(newss,'newss')
+        setNews(newss.data)
         
       
        
-    //     } catch (error) {
-    //         console.log(error,'err')
-    //     }
-    // }
+        } catch (error) {
+            console.log(error,'err')
+        }
+    }
     const getShareableLink = (id) => {
         // Replace this with your logic to generate the shareable link
         return `${process.env.REACT_APP_BASE_URL}/detailnews/${id}`;
@@ -133,10 +143,15 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
           </div>
           
         <i class="fa-solid fa-share-from-square" style={{fontSize: '1.5em'}}></i><span>Share</span>
+<FacebookShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
+  <FacebookIcon round ={true}/>
+</FacebookShareButton>
+<WhatsappShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
+  <WhatsappIcon/>
+</WhatsappShareButton>
 
-
-<i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(news._id)} ></i><span className="wname">whatsapp</span>
-<i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnFacebook(news._id)}></i><span>Facebook</span>
+{/* <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(news._id)} ></i><span className="wname">whatsapp</span>
+<i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnFacebook(news._id)}></i><span>Facebook</span> */}
         </div>
      
     </div>

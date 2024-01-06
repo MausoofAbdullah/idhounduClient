@@ -118,7 +118,10 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
   return (
    <>
      <section className='popular'>
-   
+     <meta property="og:title" content={news.title} />
+        <meta property="og:description" content={news.body} />
+        <meta property="og:image" content={serverPublic+news.images?.[0]} />
+        <title>{news.title}</title>
 
       <div className='main'>
      

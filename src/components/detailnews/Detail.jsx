@@ -45,14 +45,19 @@ const Detail = () => {
     if (latestNews) {
       setNews(latestNews);
 
-      <Helmet>
 
-      <meta property="og:title" content={news.title} />
-         <meta property="og:description" content={news.body} />
-         <meta property="og:image" content={serverPublic+news.images?.[0]} />
-         <title>{news.title}</title>
-       </Helmet>
-         
+      // document.head
+      //   .querySelector('meta[property="og:title"]')
+      //   .setAttribute('content', latestNews.title);
+
+      // document.head
+      //   .querySelector('meta[property="og:description"]')
+      //   .setAttribute('content', latestNews.body?.slice(0, 150));
+
+      // document.head
+      //   .querySelector('meta[property="og:image"]')
+      //   .setAttribute('content', serverPublic + latestNews.images?.[0]);
+      //   document.title = news.title
 
     }
   }, [latestNews]);
@@ -79,21 +84,21 @@ const Detail = () => {
 
         
     //    },[id])
-    // // console.log(ogpTags,"outside")
-      const fetchNews=async()=>{
-        try {
-          const newss=await API.get(`/user/detailnews/${id}`); 
-        //   const item = newss.find((items) => items.id === parseInt(id))
-        //  setItem(item)
-        console.log(newss,'newss')
-        setNews(newss.data)
+    // // // console.log(ogpTags,"outside")
+    //   const fetchNews=async()=>{
+    //     try {
+    //       const newss=await API.get(`/user/detailnews/${id}`); 
+    //     //   const item = newss.find((items) => items.id === parseInt(id))
+    //     //  setItem(item)
+    //     console.log(newss,'newss')
+    //     setNews(newss.data)
         
       
        
-        } catch (error) {
-            console.log(error,'err')
-        }
-    }
+    //     } catch (error) {
+    //         console.log(error,'err')
+    //     }
+    // }
     const getShareableLink = (id) => {
         // Replace this with your logic to generate the shareable link
         return `${process.env.REACT_APP_BASE_URL}/detailnews/${id}`;

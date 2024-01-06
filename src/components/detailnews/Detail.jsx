@@ -14,6 +14,7 @@ import {
   
   WhatsappIcon,
 } from "react-share";
+import { Helmet } from 'react-helmet'
 
 
 const Detail = () => {
@@ -28,35 +29,33 @@ const Detail = () => {
     console.log(id,"e")
    
   useEffect(() => {
-    // const fetchNews = async () => {
-    //   try {
-    //     const newss = await API.get(`/user/detailnews/${id}`);
-    //     setLatestNews(newss.data);
-    //   } catch (error) {
-    //     console.log(error, 'err');
-    //   }
-    // };
+    const fetchNews = async () => {
+      try {
+        const newss = await API.get(`/user/detailnews/${id}`);
+        setLatestNews(newss.data);
+      } catch (error) {
+        console.log(error, 'err');
+      }
+    };
 
     fetchNews();
   }, [id]);
 
-  // useEffect(() => {
-  //   if (latestNews) {
-  //     setNews(latestNews);
+  useEffect(() => {
+    if (latestNews) {
+      setNews(latestNews);
 
-  //     document.head
-  //       .querySelector('meta[property="og:title"]')
-  //       .setAttribute('content', latestNews.title);
+      <Helmet>
 
-  //     document.head
-  //       .querySelector('meta[property="og:description"]')
-  //       .setAttribute('content', latestNews.body?.slice(0, 150));
+      <meta property="og:title" content={news.title} />
+         <meta property="og:description" content={news.body} />
+         <meta property="og:image" content={serverPublic+news.images?.[0]} />
+         <title>{news.title}</title>
+       </Helmet>
+         
 
-  //     document.head
-  //       .querySelector('meta[property="og:image"]')
-  //       .setAttribute('content', serverPublic + latestNews.images?.[0]);
-  //   }
-  // }, [latestNews]);
+    }
+  }, [latestNews]);
 
     // useEffect(()=>{
       
@@ -73,6 +72,7 @@ const Detail = () => {
     //     document.head
     //       .querySelector('meta[property="og:image"]')
     //       .setAttribute('content', serverPublic + news.images?.[0]);
+    //       document.title = news.title
     //   }
      
       
@@ -118,10 +118,14 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
   return (
    <>
      <section className='popular'>
+      <Helmet>
+
      <meta property="og:title" content={news.title} />
         <meta property="og:description" content={news.body} />
         <meta property="og:image" content={serverPublic+news.images?.[0]} />
         <title>{news.title}</title>
+      </Helmet>
+        
 
       <div className='main'>
      

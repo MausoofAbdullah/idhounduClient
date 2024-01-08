@@ -18,15 +18,14 @@ import { Link } from "react-router-dom"
 
 const Popular = () => {
   const API= axios.create({baseURL:process.env.REACT_APP_API_CALL})
-  console.log(API,"ap")
-console.log(process.env.REACT_APP_API_CALL,"reapi call")
+ 
+
   const [currentPage,setCurrentPage]=useState(1)
   const [news,setNews]=useState([])
   const [newsPerPage,setNewsPage]=useState(2)
   const [article, setArticle] = useState(null);
 
 const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v1703658754/"
-console.log(serverPublic,"whatisi ")
 
 
 
@@ -110,8 +109,12 @@ console.log(serverPublic,"whatisi ")
     <>
      
       <section className='popular'>
+   
      
       <div>
+      {/* <Helmet>
+                <meta property="og:title" content="Updated!!" />
+            </Helmet> */}
       {currentNews.map((article) => (
         <div className="news-article" key={article._id}>
       {/* {document.head.querySelector('meta[property="og:title"]').setAttribute('content', article.title)}

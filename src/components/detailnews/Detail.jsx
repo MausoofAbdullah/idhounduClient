@@ -32,6 +32,7 @@ const Detail = () => {
     const fetchNews = async () => {
       try {
         const newss = await API.get(`/user/detailnews/${id}`);
+        
         setLatestNews(newss.data);
       } catch (error) {
         console.log(error, 'err');
@@ -61,6 +62,7 @@ const Detail = () => {
 
     }
   }, [latestNews]);
+  console.log(news,"news")
 
     // useEffect(()=>{
       
@@ -117,14 +119,6 @@ const Detail = () => {
         window.open(`https://wa.me/?text=${encodeURIComponent(shareLink)}`, '_blank');
       };
     
-      const generateWhatsappShareLink = () => {
-        if (news) {
-          const encodedText = encodeURIComponent(`Check out this news: ${news.title}`);
-          const encodedUrl = encodeURIComponent(`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`);
-          return `https://api.whatsapp.com/send?text=${encodedText}&url=${encodedUrl}`;
-        }
-        return ''; // Return an empty string if news data is not available yet
-      };
 
     
 const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v1703658754/"
@@ -161,14 +155,12 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
            
             {/* Add additional content as needed */}
           </div>
-        
-
           
         <i class="fa-solid fa-share-from-square" style={{fontSize: '1.5em'}}></i><span>Share</span>
 <FacebookShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
   <FacebookIcon round ={true}/>
 </FacebookShareButton>
-<WhatsappShareButton  url={generateWhatsappShareLink()} title={news.title} imageUrl={serverPublic+news.images?.[0] }>
+<WhatsappShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`} title={news.title} imageUrl={serverPublic+news.images?.[0] }>
   <WhatsappIcon/>
 </WhatsappShareButton>
 

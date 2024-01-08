@@ -47,18 +47,18 @@ const Detail = () => {
       setNews(latestNews);
 
 
-      // document.head
-      //   .querySelector('meta[property="og:title"]')
-      //   .setAttribute('content', latestNews.title);
+      document.head
+        .querySelector('meta[property="og:title"]')
+        .setAttribute('content', latestNews.title);
 
-      // document.head
-      //   .querySelector('meta[property="og:description"]')
-      //   .setAttribute('content', latestNews.body?.slice(0, 150));
+      document.head
+        .querySelector('meta[property="og:description"]')
+        .setAttribute('content', latestNews.body?.slice(0, 150));
 
-      // document.head
-      //   .querySelector('meta[property="og:image"]')
-      //   .setAttribute('content', serverPublic + latestNews.images?.[0]);
-      //   document.title = news.title
+      document.head
+        .querySelector('meta[property="og:image"]')
+        .setAttribute('content', serverPublic + latestNews.images?.[0]);
+        document.title = news.title
 
     }
   }, [latestNews]);

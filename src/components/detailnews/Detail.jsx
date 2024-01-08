@@ -157,15 +157,15 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
           </div>
           
         <i class="fa-solid fa-share-from-square" style={{fontSize: '1.5em'}}></i><span>Share</span>
-<FacebookShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
+{/* <FacebookShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`}>
   <FacebookIcon round ={true}/>
 </FacebookShareButton>
 <WhatsappShareButton url={`${process.env.REACT_APP_BASE_URL}/detailnews/${id}`} title={news.title} imageUrl={serverPublic+news.images?.[0] }>
   <WhatsappIcon/>
-</WhatsappShareButton>
+</WhatsappShareButton> */}
 
-{/* <i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(news._id)} ></i><span className="wname">whatsapp</span>
-<i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnFacebook(news._id)}></i><span>Facebook</span> */}
+<i class="fa-brands fa-whatsapp" style={{ color: 'green', fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnWhatsapp(news._id)} ></i><span className="wname">whatsapp</span>
+<i class="fa-brands fa-facebook" style={{  fontSize: '2em', marginLeft:"10px" }} onClick={()=>shareOnFacebook(news._id)}></i><span>Facebook</span>
         </div>
      
     </div>

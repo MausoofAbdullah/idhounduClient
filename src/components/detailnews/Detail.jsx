@@ -127,9 +127,9 @@ const serverPublic="https://res.cloudinary.com/dkeb469sv/image/upload/v170365875
      <section className='popular'>
       <Helmet>
 
-     <meta property="og:title" content={news.title} />
-        <meta property="og:description" content={news.body} />
-        <meta property="og:image" content={serverPublic+news.images?.[0]} />
+     <meta property="og:title" content={news.title} data-rh="true" />
+        <meta property="og:description" content={news.body} data-rh="true"/>
+        <meta property="og:image" content={serverPublic+news.images?.[0]} data-rh="true"/>
         <title>{news.title}</title>
       </Helmet>
         
